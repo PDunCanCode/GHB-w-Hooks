@@ -2,13 +2,13 @@ import React from 'react'
 import { FaUserFriends, FaFighterJet, FaTrophy, FaTimesCircle } from 'react-icons/fa'
 import PropTypes from 'prop-types'
 import Results from './Results'
-import ThemeContext, { ThemeConsumer } from '../contexts/theme'
+import ThemeContext from '../contexts/theme'
 import { Link } from 'react-router-dom'
 
 function Instructions () {
+  const theme = React.useContext(ThemeContext)
+  
   return (
-    <ThemeConsumer>
-      {(theme) => (
         <div className='instructions-container'>
           <h1 className='center-text header-lg'>
             Instructions
@@ -28,8 +28,6 @@ function Instructions () {
             </li>
           </ol>
         </div>
-      )}
-    </ThemeConsumer>
   )
 }
 
@@ -41,12 +39,11 @@ function PlayerInput ({ onSubmit, label }) {
     onSubmit(username)
   }
   const handleChange = (event) => setUsername(event.target.value)
+  const theme = React.useContext(ThemeContext)
   return (
-    <ThemeConsumer>
-      {(theme) => (
-        <form className='column player' onSubmit={this.handleSubmit}>
+        <form className='column player' onSubmit={handleSubmit}>
           <label htmlFor='username' className='player-label'>
-            {this.props.label}
+            {label}
           </label>
           <div className='row player-inputs'>
             <input
@@ -55,22 +52,19 @@ function PlayerInput ({ onSubmit, label }) {
               className={`input-${theme}`}
               placeholder='github username'
               autoComplete='off'
-              value={this.state.username}
-              onChange={this.handleChange}
+              value={username}
+              onChange={handleChange}
             />
             <button
               className={`btn ${theme === 'dark' ? 'light-btn' : 'dark-btn'}`}
               type='submit'
-              disabled={!this.state.username}
+              disabled={!username}
             >
               Submit
             </button>
           </div>
         </form>
       )}
-    </ThemeConsumer>
-  )
-}
     
 
 PlayerInput.propTypes = {

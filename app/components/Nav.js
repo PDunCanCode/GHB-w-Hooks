@@ -6,10 +6,10 @@ const activeStyle = {
   color: 'rgb(187, 46, 31)'
 }
 
-export default function Nav () {
+export default function Nav (theme) {
   return (
     <ThemeConsumer>
-      {({ theme, toggleTheme }) => (
+      {(theme) => (
         <nav className='row space-between'>
           <ul className='row nav'>
             <li>

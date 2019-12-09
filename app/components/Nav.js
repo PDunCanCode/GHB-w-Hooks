@@ -1,5 +1,5 @@
 import React from 'react'
-import { ThemeConsumer } from '../contexts/theme'
+import ThemeContext from '../contexts/theme'
 import { NavLink } from 'react-router-dom'
 
 const activeStyle = {
@@ -7,9 +7,8 @@ const activeStyle = {
 }
 
 export default function Nav (theme) {
+  const theme = React.useContext(ThemeContext)
   return (
-    <ThemeConsumer>
-      {(theme) => (
         <nav className='row space-between'>
           <ul className='row nav'>
             <li>
@@ -38,7 +37,5 @@ export default function Nav (theme) {
             {theme === 'light' ? '🔦' : '💡'}
           </button>
         </nav>
-      )}
-    </ThemeConsumer>
   )
 }
